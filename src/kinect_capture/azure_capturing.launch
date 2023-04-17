@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="kinect_capture" type="capturing" name="capturing" output="screen" args="10"/>
+</launch>

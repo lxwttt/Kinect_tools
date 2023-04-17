@@ -19,17 +19,30 @@ RUN apt-get update && \
     curl -sSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/azure-cli.list && \
     apt-get update && \
-    apt-get install -y libk4a1.4-dev
+    apt-get install -y libk4a1.4-dev \
+    python-catkin-tools \
+    python-rosdep \
+    python-rosinstall \
+    python-rosinstall-generator \
+    python-wstool \
+    ros-melodic-catkin \
+    ros-melodic-roslint \
+    ros-melodic-rosmsg \
+    ros-melodic-rosnode \
+    ros-melodic-rosout \
+    ros-melodic-rosservice \
+    ros-melodic-rostopic \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy your code into the container
-COPY . /catkin_ws/src
+COPY . /kinect_cap/src
 
 # Build your code
 RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && \
-                  cd /catkin_ws && \
+                  cd /kinect_cap && \
                   catkin_make"
 
 # Set up the entry point
 CMD ["/bin/bash", "-c", "source /opt/ros/melodic/setup.bash && \
                           source /catkin_ws/devel/setup.bash && \
-                          roslaunch my_package my_launch_file.launch"]
+                          rosrun kinect_capture my_launch_file.launch"]
