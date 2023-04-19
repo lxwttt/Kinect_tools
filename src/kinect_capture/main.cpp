@@ -3,13 +3,17 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <k4a/k4a.h>
+// #include <k4a/k4a.h>
 #include <ros/ros.h>
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "capturing");
     ros::NodeHandle np;
+
+}
+// legacy
+/*
     int returnCode = 1;
     k4a_device_t device = NULL;
     const int32_t TIMEOUT_IN_MS = 1000;
@@ -155,3 +159,4 @@ int main(int argc, char **argv)
 
     return returnCode;
 }
+*/

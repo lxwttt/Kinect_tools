@@ -2,19 +2,22 @@
 # Licensed under the MIT License.
 project(kinect_capture)
 
-set(catkin_DIR "/opt/ros/melodic/include/")
-set(CMAKE_PREFIX_PATH _PATH "/opt/ros/melodic;${CMAKE_MODULE_PATH}")
-
-find_package(catkin REQUIRED roscpp rospy std_msgs)
+set(catkin_DIR "/opt/ros/noedic/include/")
+set(CMAKE_PREFIX_PATH _PATH "/opt/ros/noetic;${CMAKE_MODULE_PATH}")
 
 catkin_package(CATKIN_DEPENDS roscpp rospy std_msgs)
 
-find_library(K4A_LIB NAMES k4a PATHS /usr/local/lib)
+find_package(catkin REQUIRED roscpp rospy std_msgs )
+
+# set(k4a_DIR "/home/rm/kinect_tools/src/Azure_Kinect_ROS_Driver/ext/sdk")
+
+# find_library(K4A_LIB NAMES k4a PATHS k4a_DIR)
 
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  # "/home/rm/kinect_tools/src/Azure_Kinect_ROS_Driver/ext/sdk/include"
 )
 
 add_executable(capturing main.cpp)
-target_link_libraries(capturing k4a ${catkin_LIBRARIES}
+target_link_libraries(capturing ${catkin_LIBRARIES}
     )
